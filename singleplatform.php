@@ -9,6 +9,7 @@
   Author URI: http://chrisrussellwalker.com
   License: Public Domain
   @since TODO - WORDPRESS VERSION??
+
 */
 
 // TODO - fill out above ^^^
@@ -32,10 +33,11 @@ function myplugin_activate() {
         'post_status' => 'publish',
         'post_author' => 1,
     );
+    // TODO - Test this check and decide what a more robust way is to work with the page title
     if(! isset( $page_check->ID ) ){
-        $new_page_id = wp_insert_post($new_page);
+        $new_page_id = wp_insert_post( $new_page );
         if( isset( $new_page_template ) ) {
-            update_post_meta($new_page_id, '_wp_page_template');
+            update_post_meta( $new_page_id, '_wp_page_template' );
         }
     }
 }
@@ -55,33 +57,34 @@ function singleplatform_shortcode() {
     // TODO - Cleanup
     // TODO - Make these options configurable in Admin Portal
     $html .= "<script>
-            var options = {};
-            options['PrimaryBackgroundColor'] = '#d9d9d9';
-            options['MenuDescBackgroundColor'] = '#d9d9d9';
-            options['SectionTitleBackgroundColor'] = '#f1f1f1';
-            options['SectionDescBackgroundColor'] = '#f1f1f1';
-            options['ItemBackgroundColor'] = '#ffffff';
-            options['PrimaryFontFamily'] = 'Roboto';
-            options['BaseFontSize'] = '15px';
-            options['FontCasing'] = 'Default';
-            options['PrimaryFontColor'] = '#000000';
-            options['MenuDescFontColor'] = '#000000';
-            options['SectionTitleFontColor'] = '#555555';
-            options['SectionDescFontColor'] = '#555555';
-            options['ItemTitleFontColor'] = '#555555';
-            options['FeedbackFontColor'] = '#555555';
-            options['ItemDescFontColor'] = '#555555';
-            options['ItemPriceFontColor'] = '#555555';
-            options['HideDisplayOptionPhotos'] = 'true';
-            options['HideDisplayOptionDisclaimer'] = 'true';
-            options['MenuTemplate'] = '2';
-            //options['MenuDropDownBackgroundColor'] = '#f1f1f1';
-            new BusinessView('" . $location_id . "', 'menusContainer', options);
-        </script>";
+                var options = {};
+                options['PrimaryBackgroundColor'] = '#d9d9d9';
+                options['MenuDescBackgroundColor'] = '#d9d9d9';
+                options['SectionTitleBackgroundColor'] = '#f1f1f1';
+                options['SectionDescBackgroundColor'] = '#f1f1f1';
+                options['ItemBackgroundColor'] = '#ffffff';
+                options['PrimaryFontFamily'] = 'Roboto';
+                options['BaseFontSize'] = '15px';
+                options['FontCasing'] = 'Default';
+                options['PrimaryFontColor'] = '#000000';
+                options['MenuDescFontColor'] = '#000000';
+                options['SectionTitleFontColor'] = '#555555';
+                options['SectionDescFontColor'] = '#555555';
+                options['ItemTitleFontColor'] = '#555555';
+                options['FeedbackFontColor'] = '#555555';
+                options['ItemDescFontColor'] = '#555555';
+                options['ItemPriceFontColor'] = '#555555';
+                options['HideDisplayOptionPhotos'] = 'true';
+                options['HideDisplayOptionDisclaimer'] = 'true';
+                options['MenuTemplate'] = '2';
+                //options['MenuDropDownBackgroundColor'] = '#f1f1f1';
+                new BusinessView('" . $location_id . "', 'menusContainer', options);
+            </script>";
 
     return $html;
 }
 
+// TODO - Confirm we want to call it `singleplatform_menu`
 add_shortcode( 'singleplatform_menu', 'singleplatform_shortcode' );
 
 
@@ -109,7 +112,7 @@ add_action( 'admin_menu', function() {
     add_settings_field(
         'sp-location-id',
         'Location ID',
-        'displayLocationId',
+        'spDisplayLocationId',
         'sp-plugin',
         'sp-section-one'
     );
@@ -117,17 +120,17 @@ add_action( 'admin_menu', function() {
     add_settings_field(
         'sp-api-key',
         'API Key',
-        'displayApiKey',
+        'spDisplayApiKey',
         'sp-plugin',
         'sp-section-one'
     );
 });
 
-function displayLocationId() {
+function spDisplayLocationId() {
 
     $location_id = get_option( 'sp-location-id' );
 
-    $html = '<input type="text" id="sp-location-id" name="sp-location-id" size="50"';
+    $html = '<input type="text" id="sp-location-id" name="sp-location-id" size="30"';
     if ( $location_id ) {
         $html .= ' value="' . esc_attr( $location_id ) . '"';
     }
@@ -136,7 +139,7 @@ function displayLocationId() {
     echo $html;
 }
 
-function displayApiKey() {
+function spDisplayApiKey() {
 
     $api_key = get_option( 'sp-api-key' );
 
@@ -153,17 +156,16 @@ function spSettingsPage() {
 
     $hook = 'singleplatform-admin';
 
-    echo '<div class="wrap">';
     echo '<header><h1>SinglePlatform Plugin</h1></header>';
 
     settings_errors( 'general' );
 
-    echo '<form method="post" action="' . esc_url( admin_url( 'options.php' ), array( 'https', 'http' ) ) . '">';
+    $options_url = esc_url( admin_url( 'options.php' ), array( 'https', 'http' ) );
+    echo '<form method="post" action="' . $options_url . '">';
 
     settings_fields( 'singleplatform-admin' );
     do_settings_sections( 'sp-plugin' );
 
     submit_button();
     echo '</form>';
-    echo '</div>';
 }
