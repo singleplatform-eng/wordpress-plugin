@@ -22,10 +22,14 @@
 function myplugin_activate() {
 
     // TODO - Confirm what we want the page to be called
-    $new_page_title = 'Our Menu';
+    $new_page_title = 'Menu';
     $new_page_content = '[singleplatform_menu]';
 
     $page_check = get_page_by_title( $new_page_title );
+
+    if( isset( $page_check->ID ) ) {
+        $new_page_title .= ' (powered by SinglePlatform)';
+    }
     $new_page = array(
         'post_type' => 'page',
         'post_title' => $new_page_title,
@@ -33,13 +37,8 @@ function myplugin_activate() {
         'post_status' => 'publish',
         'post_author' => 1,
     );
-    // TODO - Test this check and decide what a more robust way is to work with the page title
-    if(! isset( $page_check->ID ) ){
-        $new_page_id = wp_insert_post( $new_page );
-        if( isset( $new_page_template ) ) {
-            update_post_meta( $new_page_id, '_wp_page_template' );
-        }
-    }
+
+    wp_insert_post( $new_page );
 }
 register_activation_hook( __FILE__, 'myplugin_activate' );
 
