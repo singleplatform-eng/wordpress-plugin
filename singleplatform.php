@@ -11,12 +11,6 @@
 
 */
 
-// TODO - fill out above ^^^
-
-// TODO - Make this code much cleaner
-
-// TODO - should we employ some autoloading feature of WP?
-
 
 function myplugin_activate() {
 
@@ -52,7 +46,7 @@ function singleplatform_shortcode() {
 
     $html = '<div id="menusContainer"></div>';
     $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
-    // TODO - Cleanup
+
     $html .= "<script>
                 var options = {};
                 options['PrimaryBackgroundColor'] = '#d9d9d9';
@@ -74,7 +68,6 @@ function singleplatform_shortcode() {
                 options['HideDisplayOptionPhotos'] = 'true';
                 options['HideDisplayOptionDisclaimer'] = 'true';
                 options['MenuTemplate'] = '2';
-                //options['MenuDropDownBackgroundColor'] = '#f1f1f1';
                 new BusinessView('" . $location_id . "', 'menusContainer', options);
             </script>";
 
@@ -150,8 +143,6 @@ function spDisplayApiKey() {
 }
 
 function spSettingsPage() {
-
-    $hook = 'singleplatform-admin';
 
     echo '<header><h1>SinglePlatform Plugin</h1></header>';
 
