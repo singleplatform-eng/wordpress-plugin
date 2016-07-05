@@ -8,7 +8,6 @@
   Author: Chris Russell-Walker/SinglePlatform
   Author URI: http://chrisrussellwalker.com
   License: Public Domain
-  @since TODO - WORDPRESS VERSION??
 
 */
 
@@ -52,9 +51,8 @@ function singleplatform_shortcode() {
     }
 
     $html = '<div id="menusContainer"></div>';
-    $html .= '<script type="text/javascript" src="http://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
+    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
     // TODO - Cleanup
-    // TODO - Make these options configurable in Admin Portal
     $html .= "<script>
                 var options = {};
                 options['PrimaryBackgroundColor'] = '#d9d9d9';
