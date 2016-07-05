@@ -3,11 +3,11 @@
 
   Plugin Name: SinglePlatform
   Plugin URI: TODO
-  Description: TODO
+  Description: This needs to be updated. Official SinglePlatform plugin for WordPress.
   Version: 1.0.0
   Author: Chris Russell-Walker/SinglePlatform
   Author URI: http://chrisrussellwalker.com
-  License: Public Domain
+  License: MIT
 
 */
 
