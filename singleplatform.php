@@ -12,7 +12,7 @@
 */
 
 
-function myplugin_activate() {
+function singlePlatformActivatePlugin() {
 
     // TODO - Confirm what we want the page to be called
     $new_page_title = 'Menu';
@@ -33,10 +33,10 @@ function myplugin_activate() {
 
     wp_insert_post( $new_page );
 }
-register_activation_hook( __FILE__, 'myplugin_activate' );
+register_activation_hook( __FILE__, 'singlePlatformActivatePlugin' );
 
 
-function singleplatform_shortcode() {
+function singlePlatformShortcode() {
 
     $location_id = get_option( 'sp-location-id' );
     $api_key = get_option( 'sp-api-key', '' );
@@ -75,7 +75,7 @@ function singleplatform_shortcode() {
 }
 
 // TODO - Confirm we want to call it `singleplatform_menu`
-add_shortcode( 'singleplatform_menu', 'singleplatform_shortcode' );
+add_shortcode( 'singleplatform_menu', 'singlePlatformShortcode' );
 
 
 add_action( 'admin_menu', function() {
@@ -85,7 +85,7 @@ add_action( 'admin_menu', function() {
         'SinglePlatform',
         'manage_options',
         'singleplatform-admin',
-        'spSettingsPage',
+        'singlePlatformSettingsPage',
         // TODO - update with real image
         plugins_url( 'singleplatform/images/sp-logo-mark.png' )
     );
@@ -95,14 +95,14 @@ add_action( 'admin_menu', function() {
     add_settings_section(
         'sp-section-one',
         '',
-        'section_one_callback',
+        '',
         'sp-plugin'
     );
 
     add_settings_field(
         'sp-location-id',
         'Location ID',
-        'spDisplayLocationId',
+        'singlePlatformDisplayLocationId',
         'sp-plugin',
         'sp-section-one'
     );
@@ -110,13 +110,13 @@ add_action( 'admin_menu', function() {
     add_settings_field(
         'sp-api-key',
         'API Key',
-        'spDisplayApiKey',
+        'singlePlatformDisplayApiKey',
         'sp-plugin',
         'sp-section-one'
     );
 });
 
-function spDisplayLocationId() {
+function singlePlatformDisplayLocationId() {
 
     $location_id = get_option( 'sp-location-id' );
 
@@ -129,7 +129,7 @@ function spDisplayLocationId() {
     echo $html;
 }
 
-function spDisplayApiKey() {
+function singlePlatformDisplayApiKey() {
 
     $api_key = get_option( 'sp-api-key' );
 
@@ -142,7 +142,7 @@ function spDisplayApiKey() {
     echo $html;
 }
 
-function spSettingsPage() {
+function singlePlatformSettingsPage() {
 
     echo '<header><h1>SinglePlatform Plugin</h1></header>';
 
