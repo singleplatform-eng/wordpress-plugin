@@ -14,7 +14,6 @@
 
 function singlePlatformActivatePlugin() {
 
-    // TODO - Confirm what we want the page to be called
     $new_page_title = 'Menu';
     $new_page_content = '[singleplatform_menu]';
 
@@ -74,7 +73,6 @@ function singlePlatformShortcode() {
     return $html;
 }
 
-// TODO - Confirm we want to call it `singleplatform_menu`
 add_shortcode( 'singleplatform_menu', 'singlePlatformShortcode' );
 
 
@@ -86,7 +84,6 @@ add_action( 'admin_menu', function() {
         'manage_options',
         'singleplatform-admin',
         'singlePlatformSettingsPage',
-        // TODO - update with real image
         plugins_url( 'singleplatform/images/sp-logo-mark.png' )
     );
 
