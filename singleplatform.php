@@ -2,11 +2,11 @@
 /*
 
   Plugin Name: SinglePlatform
-  Plugin URI: TODO
-  Description: This needs to be updated. Official SinglePlatform plugin for WordPress.
+  Plugin URI: http://www.singleplatform.com
+  Description: Official SinglePlatform plugin for WordPress. Easily display your SinglePlatform menus or listings on your WordPress site.
   Version: 1.0.0
-  Author: Chris Russell-Walker/SinglePlatform
-  Author URI: http://chrisrussellwalker.com
+  Author: SinglePlatform
+  Author URI: http://www.singleplatform.com
   License: MIT
 
 */

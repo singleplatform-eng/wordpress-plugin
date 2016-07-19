@@ -1,46 +1,14 @@
-=== Plugin Name ===
-Contributors: SinglePlatform, crussellwalker
-Tags: singleplatform, single, platform, menu
-Requires at least: ??? x.x
-Tested up to: 4.5
-Stable tag: 1.0.0
-License: MIT
-License URI: http://opensource.org/licenses/MIT
+=== SinglePlatform ===
+Tags: SinglePlatform, Menus
 
-Official SinglePlatform plugin for WordPress. We are ...
+With the SinglePlatform plugin, you will be able to update your menus and services from our portal so that your info is consistent across the web.
 
 == Description ==
-
-This is all you need to know. TODO: https://codex.wordpress.org/Writing_a_Plugin#Readme_File
-
-= Use SinglePlatform shortcode (menu) =
-
-Add directions.
-
-== Upgrade Notice ==
-= 1.0.0 =
-So this works.
-
-== Changelog ==
-
-= 1.0.0 =
-* Now with more Slurm
-
-= 0.0.9 =
-* Dev Version
-
-== Frequently Asked Questions ==
-
-= How? =
-
-Answer forthcoming.
-
-
-== Screenshots ==
-
-1.
+SinglePlatform helps local business get discovered everywhere that matters online. With our official WordPress plugin, you can connect your website to our portal so that all of your updates automatically appear on your websites as well as across our expansive network of publishers. This plugin will create a dedicated menu page for your website. Save time with SinglePlatform today.
 
 == Installation ==
-
-1.
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Click \"Install Now\".
+2. On the installed plugins page next to the SinglePlatform Plugin, click \"Activate\".
+3. A tab called SinglePlatform will be created in your sidebar, click there.
+4. Enter your Location ID. If you don\'t have this ID, contact your account manager. 
+5. Your menu will now appear on your website.
