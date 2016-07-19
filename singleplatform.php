@@ -67,6 +67,7 @@ function singlePlatformShortcode() {
                 options['HideDisplayOptionPhotos'] = 'true';
                 options['HideDisplayOptionDisclaimer'] = 'true';
                 options['MenuTemplate'] = '2';
+                options['MenuIframe'] = 'true';
                 new BusinessView('" . $location_id . "', 'menusContainer', options);
             </script>";
 
