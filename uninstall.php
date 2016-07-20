@@ -7,7 +7,8 @@ if ( function_exists( 'delete_option' ) ) {
     // TODO: keep up to date with all options
     $sp_options = array(
         'sp-location-id',
-        'sp-api-key'
+        'sp-api-key',
+        'sp-primary-font-color'
     );
     array_walk( $sp_options, 'delete_option' );
 }

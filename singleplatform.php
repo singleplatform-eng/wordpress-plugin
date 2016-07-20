@@ -35,6 +35,14 @@ function singlePlatformActivatePlugin() {
 register_activation_hook( __FILE__, 'singlePlatformActivatePlugin' );
 
 
+add_action( 'admin_enqueue_scripts', 'spEnqueueColorPicker' );
+
+function spEnqueueColorPicker() {
+    wp_enqueue_style( 'wp-color-picker' );
+    wp_enqueue_script( 'my-script-handle', plugins_url('js/sp-color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+}
+
+
 function singlePlatformShortcode() {
 
     $location_id = get_option( 'sp-location-id' );
@@ -56,7 +64,7 @@ function singlePlatformShortcode() {
                 options['PrimaryFontFamily'] = 'Roboto';
                 options['BaseFontSize'] = '15px';
                 options['FontCasing'] = 'Default';
-                options['PrimaryFontColor'] = '#000000';
+                options['PrimaryFontColor'] = '" . get_option( 'sp-primary-font-color', '#000000' ) . "';
                 options['MenuDescFontColor'] = '#000000';
                 options['SectionTitleFontColor'] = '#555555';
                 options['SectionDescFontColor'] = '#555555';
@@ -89,10 +97,18 @@ add_action( 'admin_menu', function() {
     );
 
     register_setting( 'singleplatform-admin', 'sp-location-id' );
+    register_setting( 'singleplatform-admin', 'sp-primary-font-color' );
 
     add_settings_section(
         'sp-section-one',
         '',
+        '',
+        'sp-plugin'
+    );
+
+    add_settings_section(
+        'sp-font-colors-section',
+        'Font colors',
         '',
         'sp-plugin'
     );
@@ -111,6 +127,14 @@ add_action( 'admin_menu', function() {
         'singlePlatformDisplayApiKey',
         'sp-plugin',
         'sp-section-one'
+    );
+
+    add_settings_field(
+        'sp-primary-font-color',
+        'Primary Font Color',
+        'singlePlatformOptionPrimaryFontColor',
+        'sp-plugin',
+        'sp-font-colors-section'
     );
 });
 
@@ -134,6 +158,18 @@ function singlePlatformDisplayApiKey() {
     $html = '<input type="text" id="sp-api-key" name="sp-api-key" size="50"';
     if ( $api_key ) {
         $html .= ' value="' . esc_attr( $api_key ) . '"';
+    }
+    $html .= '/>';
+
+    echo $html;
+}
+
+function singlePlatformOptionPrimaryFontColor() {
+    $display_primary_font_color = get_option( 'sp-primary-font-color' );
+
+    $html = '<input type="text" class="sp-color-field" id="sp-primary-font-color" name="sp-primary-font-color"';
+    if ( $display_primary_font_color ) {
+        $html .= ' value="' . esc_attr( $display_primary_font_color ) . '"';
     }
     $html .= '/>';
 
