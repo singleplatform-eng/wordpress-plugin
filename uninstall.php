@@ -7,7 +7,8 @@ if ( function_exists( 'delete_option' ) ) {
         'sp-location-id',
         'sp-api-key',
         'sp-primary-font-color',
-        'sp-display-photos'
+        'sp-display-photos',
+        'sp-primary-font-family'
     );
     array_walk( $sp_options, 'delete_option' );
 }

@@ -63,7 +63,7 @@ function singlePlatformShortcode() {
                 options['SectionTitleBackgroundColor'] = '#f1f1f1';
                 options['SectionDescBackgroundColor'] = '#f1f1f1';
                 options['ItemBackgroundColor'] = '#ffffff';
-                options['PrimaryFontFamily'] = 'Roboto';
+                options['PrimaryFontFamily'] = '" . get_option( 'sp-primary-font-family', 'Roboto' ) . "';
                 options['BaseFontSize'] = '15px';
                 options['FontCasing'] = 'Default';
                 options['PrimaryFontColor'] = '" . get_option( 'sp-primary-font-color', '#000000' ) . "';
@@ -103,6 +103,7 @@ add_action( 'admin_menu', function() {
     register_setting( 'singleplatform-admin', 'sp-location-id' );
     register_setting( 'singleplatform-admin', 'sp-primary-font-color' );
     register_setting( 'singleplatform-admin', 'sp-display-photos' );
+    register_setting( 'singleplatform-admin', 'sp-primary-font-family' );
 
     add_settings_section(
         'sp-section-one',
@@ -121,6 +122,13 @@ add_action( 'admin_menu', function() {
     add_settings_section(
         'sp-display-section',
         'Display',
+        '',
+        'sp-plugin'
+    );
+
+    add_settings_section(
+        'sp-font-section',
+        'Font',
         '',
         'sp-plugin'
     );
@@ -155,6 +163,14 @@ add_action( 'admin_menu', function() {
         'singlePlatformOptionHidePhotos',
         'sp-plugin',
         'sp-display-section'
+    );
+
+    add_settings_field(
+        'sp-primary-font-family',
+        'Primary Font Family',
+        'singlePlatformOptionPrimaryFontFamily',
+        'sp-plugin',
+        'sp-font-section'
     );
 });
 
@@ -205,6 +221,34 @@ function singlePlatformOptionHidePhotos() {
         $html .= ' checked';
     }
     $html .= '/>';
+
+    echo $html;
+}
+
+function singlePlatformOptionPrimaryFontFamily() {
+    $display_primary_font_family = get_option( 'sp-primary-font-family', 'Roboto');
+    $options = [
+        'Arial',
+        'Helvetica Neue',
+        'Times New Roman',
+        'Georgia',
+        'Trebuchet',
+        'Sans Serif',
+        'Calibri',
+        'Helvetica',
+        'Verdana',
+        'Roboto',
+        'Open Sans'
+    ];
+
+    $html = '<select id="sp-primary-font-family" name="sp-primary-font-family">';
+    foreach ($options as $option) {
+        $html .= '<option value="';
+        $html .= $option . '"';
+        $html .= ($display_primary_font_family == $option) ? ' selected' : '';
+        $html .= '>' . $option . '</option>';
+    }
+    $html .= '<select/>';
 
     echo $html;
 }
