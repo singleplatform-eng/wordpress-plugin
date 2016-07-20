@@ -35,11 +35,14 @@ function singlePlatformActivatePlugin() {
 register_activation_hook( __FILE__, 'singlePlatformActivatePlugin' );
 
 
-add_action( 'admin_enqueue_scripts', 'spEnqueueColorPicker' );
+add_action( 'admin_enqueue_scripts', 'singlePlatformEnqueueAdminAssets' );
 
-function spEnqueueColorPicker() {
+function singlePlatformEnqueueAdminAssets() {
     wp_enqueue_style( 'wp-color-picker' );
     wp_enqueue_script( 'my-script-handle', plugins_url('js/sp-color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+
+    wp_register_style( 'sp-admin', plugins_url('css/sp-admin.css', __FILE__) );
+    wp_enqueue_style( 'sp-admin' );
 }
 
 function singleplatformGetDisplayOption($id) {
@@ -138,7 +141,7 @@ add_action( 'admin_menu', function() {
     register_setting( 'singleplatform-admin', 'sp-feedback-widget' );
     register_setting( 'singleplatform-admin', 'sp-claim-location' );
     register_setting( 'singleplatform-admin', 'sp-attribution-image' );
-    
+
     add_settings_section(
         'sp-section-one',
         'Setup',
