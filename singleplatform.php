@@ -345,8 +345,10 @@ add_action( 'admin_menu', function() {
 
 function singlePlatformSettingsPage() {
 
+    echo '<div id="singleplatform-container">';
     echo '<header><h1>SinglePlatform Plugin</h1></header>';
 
+    echo '<div class="sp-settings-container">';
     settings_errors( 'general' );
 
     $options_url = esc_url( admin_url( 'options.php' ), array( 'https', 'http' ) );
@@ -357,6 +359,8 @@ function singlePlatformSettingsPage() {
 
     submit_button();
     echo '</form>';
+    echo '</div>';
+    echo '</div>';
 }
 
 function singlePlatformDisplayLocationId() {
