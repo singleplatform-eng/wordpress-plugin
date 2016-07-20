@@ -42,16 +42,26 @@ function spEnqueueColorPicker() {
     wp_enqueue_script( 'my-script-handle', plugins_url('js/sp-color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
 }
 
+function getDisplayOption($id) {
+    return (get_option($id, '') == 'on') ? "'false'" : "'true'";
+}
 
 function singlePlatformShortcode() {
 
     $location_id = get_option( 'sp-location-id' );
     $api_key = get_option( 'sp-api-key', '' );
-    if (! $location_id ) {
+    if (!$location_id) {
         return;
     }
 
-    $hidePhotos = (get_option( 'sp-display-photos', '' ) == 'on') ? "'true'" : "'false'";
+    $hide_photos = getDisplayOption('sp-display-photos');
+    $hide_announcements = getDisplayOption('sp-display-announcements');
+    $hide_dollar_sign = getDisplayOption('sp-display-dollar-sign');
+    $hide_price = getDisplayOption('sp-display-price');
+    $hide_disclaimer = getDisplayOption('sp-display-disclaimer');
+    $hide_feedback_widget = getDisplayOption('sp-feedback-widget');
+    $hide_claim_location = getDisplayOption('sp-claim-location');
+    $hide_attribution_image = getDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
     $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
@@ -63,7 +73,7 @@ function singlePlatformShortcode() {
                 options['SectionTitleBackgroundColor'] = '" . get_option('sp-secondary-background-color', '#f1f1f1') . "';
                 options['SectionDescBackgroundColor'] = '" . get_option('sp-secondary-background-color', '#f1f1f1') . "';
                 options['ItemBackgroundColor'] = '" . get_option('sp-tertiary-background-color', '#ffffff') . "';
-                options['PrimaryFontFamily'] = '" . get_option('sp-primary-font-family', 'Roboto') . "';
+                options['PrimaryFontFamily'] = '" . get_option('sp-font-family', 'Roboto') . "';
                 options['BaseFontSize'] = '" . get_option('sp-base-font-size', '15px') . "';
                 options['FontCasing'] = '" . get_option('sp-item-casing', 'Default') . "';
                 options['PrimaryFontColor'] = '" . get_option('sp-primary-font-color', '#000000') . "';
@@ -75,9 +85,15 @@ function singlePlatformShortcode() {
                 options['ItemDescFontColor'] = '" . get_option('sp-tertiary-font-color', '#555555') . "';
                 options['ItemPriceFontColor'] = '" . get_option('sp-tertiary-font-color', '#555555') . "';";
     $html .= "
-                options['HideDisplayOptionPhotos'] = " . $hidePhotos . ";";
+                options['HideDisplayOptionAnnouncements'] = " . $hide_announcements . ";
+                options['HideDisplayOptionPhotos'] = " . $hide_photos . ";
+                options['HideDisplayOptionDollarSign'] = " . $hide_dollar_sign . ";
+                options['HideDisplayOptionPrice'] = " . $hide_price . ";
+                options['HideDisplayOptionDisclaimer'] = " . $hide_disclaimer . ";
+                options['HideDisplayOptionFeedback'] = " . $hide_feedback_widget . ";
+                options['HideDisplayOptionClaim'] = " . $hide_claim_location . ";
+                options['HideDisplayOptionAttribution'] = " . $hide_attribution_image . ";";
     $html .= "
-                options['HideDisplayOptionDisclaimer'] = 'true';
                 options['MenuTemplate'] = '2';
                 options['MenuIframe'] = 'true';
                 new BusinessView('" . $location_id . "', 'menusContainer', options);
@@ -119,14 +135,13 @@ add_action( 'admin_menu', function() {
     register_setting( 'singleplatform-admin', 'sp-display-dollar-sign' );
     register_setting( 'singleplatform-admin', 'sp-display-price' );
     register_setting( 'singleplatform-admin', 'sp-display-disclaimer' );
-    register_setting( 'singleplatform-admin', 'sp-menu-template' );
     register_setting( 'singleplatform-admin', 'sp-feedback-widget' );
     register_setting( 'singleplatform-admin', 'sp-claim-location' );
     register_setting( 'singleplatform-admin', 'sp-attribution-image' );
     
     add_settings_section(
         'sp-section-one',
-        '',
+        'Setup',
         '',
         'sp-plugin'
     );
@@ -159,19 +174,18 @@ add_action( 'admin_menu', function() {
         'sp-plugin'
     );
 
+    add_settings_section(
+        'sp-advanced-section',
+        'Advanced',
+        '',
+        'sp-plugin'
+    );
+
     /* Setup Fields */
     add_settings_field(
         'sp-location-id',
         'Location ID',
         'singlePlatformDisplayLocationId',
-        'sp-plugin',
-        'sp-section-one'
-    );
-
-    add_settings_field(
-        'sp-api-key',
-        'API Key',
-        'singlePlatformDisplayApiKey',
         'sp-plugin',
         'sp-section-one'
     );
@@ -293,14 +307,6 @@ add_action( 'admin_menu', function() {
     );
 
     add_settings_field(
-        'sp-menu-template',
-        'New menu template',
-        'singleplatformOptionMenuTemplate',
-        'sp-plugin',
-        'sp-display-section'
-    );
-
-    add_settings_field(
         'sp-feedback-widget',
         'Feedback widget',
         'singleplatformOptionFeedbackWidget',
@@ -322,7 +328,16 @@ add_action( 'admin_menu', function() {
         'singleplatformOptionAttributionImage',
         'sp-plugin',
         'sp-display-section'
-    );    
+    );
+
+    /* Advanced Fields */
+    add_settings_field(
+        'sp-api-key',
+        'API Key',
+        'singlePlatformDisplayApiKey',
+        'sp-plugin',
+        'sp-advanced-section'
+    );
 });
 
 function singlePlatformSettingsPage() {
@@ -427,7 +442,7 @@ function singlePlatformOptionFontFamily() {
         'Open Sans'
     ];
 
-    $html = '<select id="sp-primary-font-family" name="sp-primary-font-family">';
+    $html = '<select id="sp-font-family" name="sp-font-family">';
     foreach ($options as $option) {
         $html .= '<option value="';
         $html .= $option . '"';
@@ -577,18 +592,6 @@ function singleplatformOptionDisplayDisclaimer() {
 
     $html = '<input type="checkbox" id="sp-display-disclaimer" name="sp-display-disclaimer"';
     if ( $display_disclaimer ) {
-        $html .= ' checked';
-    }
-    $html .= ' />';
-
-    echo $html;
-}
-
-function singleplatformOptionMenuTemplate() {
-    $display_menu_template = get_option('sp-menu-template', true);
-
-    $html = '<input type="checkbox" id="sp-menu-template" name="sp-menu-template"';
-    if ( $display_menu_template ) {
         $html .= ' checked';
     }
     $html .= ' />';

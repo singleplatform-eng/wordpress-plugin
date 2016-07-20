@@ -6,9 +6,23 @@ if ( function_exists( 'delete_option' ) ) {
     $sp_options = array(
         'sp-location-id',
         'sp-api-key',
+        'sp-primary-background-color',
+        'sp-secondary-background-color',
+        'sp-tertiary-background-color',
         'sp-primary-font-color',
+        'sp-secondary-font-color',
+        'sp-tertiary-font-color',
+        'sp-font-family',
+        'sp-base-font-size',
+        'sp-item-casing',
+        'sp-display-announcements',
         'sp-display-photos',
-        'sp-primary-font-family'
+        'sp-display-dollar-sign',
+        'sp-display-price',
+        'sp-display-disclaimer',
+        'sp-feedback-widget',
+        'sp-claim-location',
+        'sp-attribution-image'
     );
     array_walk( $sp_options, 'delete_option' );
 }
