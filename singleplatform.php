@@ -51,6 +51,8 @@ function singlePlatformShortcode() {
         return;
     }
 
+    $hidePhotos = (get_option( 'sp-display-photos', '' ) == 'on') ? "'true'" : "'false'";
+
     $html = '<div id="menusContainer"></div>';
     $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
 
@@ -71,8 +73,10 @@ function singlePlatformShortcode() {
                 options['ItemTitleFontColor'] = '#555555';
                 options['FeedbackFontColor'] = '#555555';
                 options['ItemDescFontColor'] = '#555555';
-                options['ItemPriceFontColor'] = '#555555';
-                options['HideDisplayOptionPhotos'] = 'true';
+                options['ItemPriceFontColor'] = '#555555';";
+    $html .= "
+                options['HideDisplayOptionPhotos'] = " . $hidePhotos . ";";
+    $html .= "
                 options['HideDisplayOptionDisclaimer'] = 'true';
                 options['MenuTemplate'] = '2';
                 options['MenuIframe'] = 'true';
@@ -98,6 +102,7 @@ add_action( 'admin_menu', function() {
 
     register_setting( 'singleplatform-admin', 'sp-location-id' );
     register_setting( 'singleplatform-admin', 'sp-primary-font-color' );
+    register_setting( 'singleplatform-admin', 'sp-display-photos' );
 
     add_settings_section(
         'sp-section-one',
@@ -109,6 +114,13 @@ add_action( 'admin_menu', function() {
     add_settings_section(
         'sp-font-colors-section',
         'Font colors',
+        '',
+        'sp-plugin'
+    );
+
+    add_settings_section(
+        'sp-display-section',
+        'Display',
         '',
         'sp-plugin'
     );
@@ -135,6 +147,14 @@ add_action( 'admin_menu', function() {
         'singlePlatformOptionPrimaryFontColor',
         'sp-plugin',
         'sp-font-colors-section'
+    );
+
+    add_settings_field(
+        'sp-hide-display-option-photos',
+        'Hide Photos',
+        'singlePlatformOptionHidePhotos',
+        'sp-plugin',
+        'sp-display-section'
     );
 });
 
@@ -170,6 +190,19 @@ function singlePlatformOptionPrimaryFontColor() {
     $html = '<input type="text" class="sp-color-field" id="sp-primary-font-color" name="sp-primary-font-color"';
     if ( $display_primary_font_color ) {
         $html .= ' value="' . esc_attr( $display_primary_font_color ) . '"';
+    }
+    $html .= '/>';
+
+    echo $html;
+}
+
+
+function singlePlatformOptionHidePhotos() {
+    $display_photos = get_option( 'sp-display-photos' );
+
+    $html = '<input type="checkbox" id="sp-display-photos" name="sp-display-photos"';
+    if ( $display_photos ) {
+        $html .= ' checked';
     }
     $html .= '/>';
 
