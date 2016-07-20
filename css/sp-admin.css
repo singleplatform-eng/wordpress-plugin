@@ -52,3 +52,7 @@
 #singleplatform-container .button.button-primary:hover {
     background: #214860;
 }
+
+#singleplatform-container .notice {
+    margin-bottom: 25px;
+}
