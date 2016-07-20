@@ -42,7 +42,7 @@ function spEnqueueColorPicker() {
     wp_enqueue_script( 'my-script-handle', plugins_url('js/sp-color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
 }
 
-function getDisplayOption($id) {
+function singleplatformGetDisplayOption($id) {
     return (get_option($id, '') == 'on') ? "'false'" : "'true'";
 }
 
@@ -54,14 +54,14 @@ function singlePlatformShortcode() {
         return;
     }
 
-    $hide_photos = getDisplayOption('sp-display-photos');
-    $hide_announcements = getDisplayOption('sp-display-announcements');
-    $hide_dollar_sign = getDisplayOption('sp-display-dollar-sign');
-    $hide_price = getDisplayOption('sp-display-price');
-    $hide_disclaimer = getDisplayOption('sp-display-disclaimer');
-    $hide_feedback_widget = getDisplayOption('sp-feedback-widget');
-    $hide_claim_location = getDisplayOption('sp-claim-location');
-    $hide_attribution_image = getDisplayOption('sp-attribution-image');
+    $hide_photos = singleplatformGetDisplayOption('sp-display-photos');
+    $hide_announcements = singleplatformGetDisplayOption('sp-display-announcements');
+    $hide_dollar_sign = singleplatformGetDisplayOption('sp-display-dollar-sign');
+    $hide_price = singleplatformGetDisplayOption('sp-display-price');
+    $hide_disclaimer = singleplatformGetDisplayOption('sp-display-disclaimer');
+    $hide_feedback_widget = singleplatformGetDisplayOption('sp-feedback-widget');
+    $hide_claim_location = singleplatformGetDisplayOption('sp-claim-location');
+    $hide_attribution_image = singleplatformGetDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
     $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
