@@ -473,7 +473,7 @@ function singleplatformOptionFontSize() {
         '16px'
     ];
 
-    $html = '<select id="sp-base-font-family" name="sp-base-font-family">';
+    $html = '<select id="sp-base-font-size" name="sp-base-font-size">';
     foreach ($options as $option) {
         $html .= '<option value="' . $option . '"';
         $html .= ($display_font_size == $option) ? ' selected' : '';
