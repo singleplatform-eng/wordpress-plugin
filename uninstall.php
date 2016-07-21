@@ -17,7 +17,7 @@ if ( function_exists( 'delete_option' ) ) {
         'sp-item-casing',
         'sp-display-announcements',
         'sp-display-photos',
-        'sp-display-dollar-sign',
+        'sp-display-currency-symbol',
         'sp-display-price',
         'sp-display-disclaimer',
         'sp-feedback-widget',

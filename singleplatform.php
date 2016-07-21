@@ -59,7 +59,7 @@ function singlePlatformShortcode() {
 
     $hide_photos = singleplatformGetDisplayOption('sp-display-photos');
     $hide_announcements = singleplatformGetDisplayOption('sp-display-announcements');
-    $hide_dollar_sign = singleplatformGetDisplayOption('sp-display-dollar-sign');
+    $hide_currency_symbol = singleplatformGetDisplayOption('sp-display-currency-symbol');
     $hide_price = singleplatformGetDisplayOption('sp-display-price');
     $hide_disclaimer = singleplatformGetDisplayOption('sp-display-disclaimer');
     $hide_feedback_widget = singleplatformGetDisplayOption('sp-feedback-widget');
@@ -90,7 +90,7 @@ function singlePlatformShortcode() {
     $html .= "
                 options['HideDisplayOptionAnnouncements'] = " . $hide_announcements . ";
                 options['HideDisplayOptionPhotos'] = " . $hide_photos . ";
-                options['HideDisplayOptionDollarSign'] = " . $hide_dollar_sign . ";
+                options['HideDisplayOptionDollarSign'] = " . $hide_currency_symbol . ";
                 options['HideDisplayOptionPrice'] = " . $hide_price . ";
                 options['HideDisplayOptionDisclaimer'] = " . $hide_disclaimer . ";
                 options['HideDisplayOptionFeedback'] = " . $hide_feedback_widget . ";
@@ -135,7 +135,7 @@ add_action( 'admin_menu', function() {
 
     register_setting( 'singleplatform-admin', 'sp-display-announcements' );
     register_setting( 'singleplatform-admin', 'sp-display-photos' );
-    register_setting( 'singleplatform-admin', 'sp-display-dollar-sign' );
+    register_setting( 'singleplatform-admin', 'sp-display-currency-symbol' );
     register_setting( 'singleplatform-admin', 'sp-display-price' );
     register_setting( 'singleplatform-admin', 'sp-display-disclaimer' );
     register_setting( 'singleplatform-admin', 'sp-feedback-widget' );
@@ -286,9 +286,9 @@ add_action( 'admin_menu', function() {
     );
 
     add_settings_field(
-        'sp-display-dollar-sign',
-        'Dollar sign',
-        'singleplatformOptionDisplayDollarSign',
+        'sp-display-currency-symbol',
+        'Currency symbol (e.g. $ / €)',
+        'singleplatformOptionDisplayCurrencySymbol',
         'sp-plugin',
         'sp-display-section'
     );
@@ -570,11 +570,11 @@ function singlePlatformOptionHidePhotos() {
     echo $html;
 }
 
-function singleplatformOptionDisplayDollarSign() {
-    $display_dollar_sign = get_option('sp-display-dollar-sign', true);
+function singleplatformOptionDisplayCurrencySymbol() {
+    $display_currency_symbol = get_option('sp-display-currency-symbol', true);
 
-    $html = '<input type="checkbox" id="sp-display-dollar-sign" name="sp-display-dollar-sign"';
-    if ( $display_dollar_sign ) {
+    $html = '<input type="checkbox" id="sp-display-currency-symbol" name="sp-display-currency-symbol"';
+    if ( $display_currency_symbol ) {
         $html .= ' checked';
     }
     $html .= ' />';
