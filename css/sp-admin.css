@@ -1,0 +1,58 @@
+/* sp-admin styles */
+#singleplatform-container {
+    width: 95%;
+    margin: 50px auto;
+    background: #fafafa;
+    border: 1px solid #dddddd;
+}
+
+#singleplatform-container header h1 {
+    background: #214860;
+    margin: 0;
+    padding: 20px;
+    color: #fafafa;
+}
+
+#singleplatform-container .sp-settings-container {
+    padding: 50px;
+}
+
+#singleplatform-container .sp-settings-container h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    font-size: 20px;
+    color: #214860;
+}
+
+#singleplatform-container .form-table {
+    margin-bottom: 25px;
+}
+
+#singleplatform-container .form-table th,
+#singleplatform-container .form-table td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #383d3f;
+}
+
+#singleplatform-container .button.button-primary {
+    padding: 10px 15px;
+    border-radius: 2px;
+    background: #4d6d80;
+    color: #fafafa;
+    text-align: center;
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    line-height: initial;
+    height: initial;
+}
+
+#singleplatform-container .button.button-primary:hover {
+    background: #214860;
+}
+
+#singleplatform-container .notice {
+    margin-bottom: 25px;
+}

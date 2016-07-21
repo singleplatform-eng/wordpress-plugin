@@ -3,11 +3,26 @@
 // SP Plugin options
 if ( function_exists( 'delete_option' ) ) {
     // Delete all admin options used for plugin
-
-    // TODO: keep up to date with all options
     $sp_options = array(
         'sp-location-id',
-        'sp-api-key'
+        'sp-api-key',
+        'sp-primary-background-color',
+        'sp-secondary-background-color',
+        'sp-tertiary-background-color',
+        'sp-primary-font-color',
+        'sp-secondary-font-color',
+        'sp-tertiary-font-color',
+        'sp-font-family',
+        'sp-base-font-size',
+        'sp-item-casing',
+        'sp-display-announcements',
+        'sp-display-photos',
+        'sp-display-currency-symbol',
+        'sp-display-price',
+        'sp-display-disclaimer',
+        'sp-feedback-widget',
+        'sp-claim-location',
+        'sp-attribution-image'
     );
     array_walk( $sp_options, 'delete_option' );
 }
