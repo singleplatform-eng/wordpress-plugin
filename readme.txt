@@ -1,6 +1,8 @@
 === SinglePlatform ===
+Contributors: SinglePlatform, crussellwalker
 Tags: SinglePlatform, Menus
 Requires at least: 3.9
+Tested up to: 4.5
 
 With the SinglePlatform plugin, you will be able to update your menus and services from our portal so that your info is consistent across the web.
 
