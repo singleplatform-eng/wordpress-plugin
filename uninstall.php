@@ -19,7 +19,6 @@ if ( function_exists( 'delete_option' ) ) {
         'sp-display-currency-symbol',
         'sp-display-price',
         'sp-display-disclaimer',
-        'sp-feedback-widget',
         'sp-attribution-image'
     );
     array_walk( $sp_options, 'delete_option' );

@@ -61,7 +61,6 @@ function singlePlatformShortcode() {
     $hide_currency_symbol = singleplatformGetDisplayOption('sp-display-currency-symbol');
     $hide_price = singleplatformGetDisplayOption('sp-display-price');
     $hide_disclaimer = singleplatformGetDisplayOption('sp-display-disclaimer');
-    $hide_feedback_widget = singleplatformGetDisplayOption('sp-feedback-widget');
     $hide_attribution_image = singleplatformGetDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
@@ -91,7 +90,6 @@ function singlePlatformShortcode() {
                 options['HideDisplayOptionDollarSign'] = " . $hide_currency_symbol . ";
                 options['HideDisplayOptionPrice'] = " . $hide_price . ";
                 options['HideDisplayOptionDisclaimer'] = " . $hide_disclaimer . ";
-                options['HideDisplayOptionFeedback'] = " . $hide_feedback_widget . ";
                 options['HideDisplayOptionAttribution'] = " . $hide_attribution_image . ";";
     $html .= "
                 options['MenuTemplate'] = '2';
@@ -135,7 +133,6 @@ add_action( 'admin_menu', function() {
     register_setting( 'singleplatform-admin', 'sp-display-currency-symbol' );
     register_setting( 'singleplatform-admin', 'sp-display-price' );
     register_setting( 'singleplatform-admin', 'sp-display-disclaimer' );
-    register_setting( 'singleplatform-admin', 'sp-feedback-widget' );
     register_setting( 'singleplatform-admin', 'sp-attribution-image' );
 
     add_settings_section(
@@ -294,14 +291,6 @@ add_action( 'admin_menu', function() {
         'sp-display-disclaimer',
         'Disclaimer',
         'singleplatformOptionDisplayDisclaimer',
-        'sp-plugin',
-        'sp-display-section'
-    );
-
-    add_settings_field(
-        'sp-feedback-widget',
-        'Feedback widget',
-        'singleplatformOptionFeedbackWidget',
         'sp-plugin',
         'sp-display-section'
     );
@@ -558,18 +547,6 @@ function singleplatformOptionDisplayDisclaimer() {
 
     $html = '<input type="checkbox" id="sp-display-disclaimer" name="sp-display-disclaimer"';
     if ( $display_disclaimer ) {
-        $html .= ' checked';
-    }
-    $html .= ' />';
-
-    echo $html;
-}
-
-function singleplatformOptionFeedbackWidget() {
-    $display_feedback_widget = get_option('sp-feedback-widget', true);
-
-    $html = '<input type="checkbox" id="sp-feedback-widget" name="sp-feedback-widget"';
-    if ( $display_feedback_widget ) {
         $html .= ' checked';
     }
     $html .= ' />';
