@@ -1,5 +1,5 @@
 === SinglePlatform ===
-Contributors: SinglePlatform, crussellwalker
+Contributors: SinglePlatform, crussellwalker, benschel
 Tags: SinglePlatform, Menus
 Requires at least: 3.9
 Tested up to: 4.5
