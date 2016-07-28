@@ -63,7 +63,6 @@ function singlePlatformShortcode() {
     $hide_price = singleplatformGetDisplayOption('sp-display-price');
     $hide_disclaimer = singleplatformGetDisplayOption('sp-display-disclaimer');
     $hide_feedback_widget = singleplatformGetDisplayOption('sp-feedback-widget');
-    $hide_claim_location = singleplatformGetDisplayOption('sp-claim-location');
     $hide_attribution_image = singleplatformGetDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
@@ -94,7 +93,6 @@ function singlePlatformShortcode() {
                 options['HideDisplayOptionPrice'] = " . $hide_price . ";
                 options['HideDisplayOptionDisclaimer'] = " . $hide_disclaimer . ";
                 options['HideDisplayOptionFeedback'] = " . $hide_feedback_widget . ";
-                options['HideDisplayOptionClaim'] = " . $hide_claim_location . ";
                 options['HideDisplayOptionAttribution'] = " . $hide_attribution_image . ";";
     $html .= "
                 options['MenuTemplate'] = '2';
@@ -139,7 +137,6 @@ add_action( 'admin_menu', function() {
     register_setting( 'singleplatform-admin', 'sp-display-price' );
     register_setting( 'singleplatform-admin', 'sp-display-disclaimer' );
     register_setting( 'singleplatform-admin', 'sp-feedback-widget' );
-    register_setting( 'singleplatform-admin', 'sp-claim-location' );
     register_setting( 'singleplatform-admin', 'sp-attribution-image' );
 
     add_settings_section(
@@ -313,14 +310,6 @@ add_action( 'admin_menu', function() {
         'sp-feedback-widget',
         'Feedback widget',
         'singleplatformOptionFeedbackWidget',
-        'sp-plugin',
-        'sp-display-section'
-    );
-
-    add_settings_field(
-        'sp-claim-location',
-        'Claim location',
-        'singleplatformOptionClaimLocation',
         'sp-plugin',
         'sp-display-section'
     );
@@ -611,18 +600,6 @@ function singleplatformOptionFeedbackWidget() {
 
     $html = '<input type="checkbox" id="sp-feedback-widget" name="sp-feedback-widget"';
     if ( $display_feedback_widget ) {
-        $html .= ' checked';
-    }
-    $html .= ' />';
-
-    echo $html;
-}
-
-function singleplatformOptionClaimLocation() {
-    $display_claim_location = get_option('sp-claim-location', true);
-
-    $html = '<input type="checkbox" id="sp-claim-location" name="sp-claim-location"';
-    if ( $display_claim_location ) {
         $html .= ' checked';
     }
     $html .= ' />';

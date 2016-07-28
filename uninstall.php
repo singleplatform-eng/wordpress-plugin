@@ -21,7 +21,6 @@ if ( function_exists( 'delete_option' ) ) {
         'sp-display-price',
         'sp-display-disclaimer',
         'sp-feedback-widget',
-        'sp-claim-location',
         'sp-attribution-image'
     );
     array_walk( $sp_options, 'delete_option' );
