@@ -52,7 +52,6 @@ function singleplatformGetDisplayOption($id) {
 function singlePlatformShortcode() {
 
     $location_id = get_option( 'sp-location-id' );
-    $api_key = get_option( 'sp-api-key', '' );
     if (!$location_id) {
         return;
     }
@@ -66,7 +65,7 @@ function singlePlatformShortcode() {
     $hide_attribution_image = singleplatformGetDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
-    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
+    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/"></script>';
 
     $html .= "<script>
                 var options = {};
@@ -170,13 +169,6 @@ add_action( 'admin_menu', function() {
     add_settings_section(
         'sp-display-section',
         'Display',
-        '',
-        'sp-plugin'
-    );
-
-    add_settings_section(
-        'sp-advanced-section',
-        'Advanced',
         '',
         'sp-plugin'
     );
@@ -321,15 +313,6 @@ add_action( 'admin_menu', function() {
         'sp-plugin',
         'sp-display-section'
     );
-
-    /* Advanced Fields */
-    add_settings_field(
-        'sp-api-key',
-        'API Key',
-        'singlePlatformDisplayApiKey',
-        'sp-plugin',
-        'sp-advanced-section'
-    );
 });
 
 function singlePlatformSettingsPage() {
@@ -359,19 +342,6 @@ function singlePlatformDisplayLocationId() {
     $html = '<input type="text" id="sp-location-id" name="sp-location-id" size="30"';
     if ( $location_id ) {
         $html .= ' value="' . esc_attr( $location_id ) . '"';
-    }
-    $html .= '/>';
-
-    echo $html;
-}
-
-function singlePlatformDisplayApiKey() {
-
-    $api_key = get_option( 'sp-api-key' );
-
-    $html = '<input type="text" id="sp-api-key" name="sp-api-key" size="50"';
-    if ( $api_key ) {
-        $html .= ' value="' . esc_attr( $api_key ) . '"';
     }
     $html .= '/>';
 
