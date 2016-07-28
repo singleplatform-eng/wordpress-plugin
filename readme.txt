@@ -1,6 +1,8 @@
 === SinglePlatform ===
+Contributors: SinglePlatform, crussellwalker, benschel
 Tags: SinglePlatform, Menus
 Requires at least: 3.9
+Tested up to: 4.5
 
 With the SinglePlatform plugin, you will be able to update your menus and services from our portal so that your info is consistent across the web.
 
@@ -13,3 +15,8 @@ SinglePlatform helps local business get discovered everywhere that matters onlin
 3. A tab called SinglePlatform will be created in your sidebar, click there.
 4. Enter your Location ID. If you don't have this ID, contact your account manager.
 5. Your menu will now appear on your website.
+
+== Screenshots ==
+
+1. Menu Widget. Example of how your SinglePlatform menu can look on your website.
+2. Settings screen. Customize Tweet and Timeline color schemes including background, text colors, and borders. Attribute site content to a Twitter account. Automatically include Tweet buttons alongside your post content.
