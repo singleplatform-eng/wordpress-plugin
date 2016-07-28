@@ -18,5 +18,5 @@ SinglePlatform helps local business get discovered everywhere that matters onlin
 
 == Screenshots ==
 
-1. Settings screen. Customize Tweet and Timeline color schemes including background, text colors, and borders. Attribute site content to a Twitter account. Automatically include Tweet buttons alongside your post content.
-2. Menu Widget. Example of how your SinglePlatform menu can look on your website.
+1. Menu Widget. Example of how your SinglePlatform menu can look on your website.
+2. Settings screen. Customize Tweet and Timeline color schemes including background, text colors, and borders. Attribute site content to a Twitter account. Automatically include Tweet buttons alongside your post content.
