@@ -52,7 +52,6 @@ function singleplatformGetDisplayOption($id) {
 function singlePlatformShortcode() {
 
     $location_id = get_option( 'sp-location-id' );
-    $api_key = get_option( 'sp-api-key', '' );
     if (!$location_id) {
         return;
     }
@@ -62,12 +61,10 @@ function singlePlatformShortcode() {
     $hide_currency_symbol = singleplatformGetDisplayOption('sp-display-currency-symbol');
     $hide_price = singleplatformGetDisplayOption('sp-display-price');
     $hide_disclaimer = singleplatformGetDisplayOption('sp-display-disclaimer');
-    $hide_feedback_widget = singleplatformGetDisplayOption('sp-feedback-widget');
-    $hide_claim_location = singleplatformGetDisplayOption('sp-claim-location');
     $hide_attribution_image = singleplatformGetDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
-    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
+    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/"></script>';
 
     $html .= "<script>
                 var options = {};
@@ -93,8 +90,6 @@ function singlePlatformShortcode() {
                 options['HideDisplayOptionDollarSign'] = " . $hide_currency_symbol . ";
                 options['HideDisplayOptionPrice'] = " . $hide_price . ";
                 options['HideDisplayOptionDisclaimer'] = " . $hide_disclaimer . ";
-                options['HideDisplayOptionFeedback'] = " . $hide_feedback_widget . ";
-                options['HideDisplayOptionClaim'] = " . $hide_claim_location . ";
                 options['HideDisplayOptionAttribution'] = " . $hide_attribution_image . ";";
     $html .= "
                 options['MenuTemplate'] = '2';
@@ -138,8 +133,6 @@ add_action( 'admin_menu', function() {
     register_setting( 'singleplatform-admin', 'sp-display-currency-symbol' );
     register_setting( 'singleplatform-admin', 'sp-display-price' );
     register_setting( 'singleplatform-admin', 'sp-display-disclaimer' );
-    register_setting( 'singleplatform-admin', 'sp-feedback-widget' );
-    register_setting( 'singleplatform-admin', 'sp-claim-location' );
     register_setting( 'singleplatform-admin', 'sp-attribution-image' );
 
     add_settings_section(
@@ -173,13 +166,6 @@ add_action( 'admin_menu', function() {
     add_settings_section(
         'sp-display-section',
         'Display',
-        '',
-        'sp-plugin'
-    );
-
-    add_settings_section(
-        'sp-advanced-section',
-        'Advanced',
         '',
         'sp-plugin'
     );
@@ -310,36 +296,11 @@ add_action( 'admin_menu', function() {
     );
 
     add_settings_field(
-        'sp-feedback-widget',
-        'Feedback widget',
-        'singleplatformOptionFeedbackWidget',
-        'sp-plugin',
-        'sp-display-section'
-    );
-
-    add_settings_field(
-        'sp-claim-location',
-        'Claim location',
-        'singleplatformOptionClaimLocation',
-        'sp-plugin',
-        'sp-display-section'
-    );
-
-    add_settings_field(
         'sp-attribution-image',
         'Attribution image',
         'singleplatformOptionAttributionImage',
         'sp-plugin',
         'sp-display-section'
-    );
-
-    /* Advanced Fields */
-    add_settings_field(
-        'sp-api-key',
-        'API Key',
-        'singlePlatformDisplayApiKey',
-        'sp-plugin',
-        'sp-advanced-section'
     );
 });
 
@@ -370,19 +331,6 @@ function singlePlatformDisplayLocationId() {
     $html = '<input type="text" id="sp-location-id" name="sp-location-id" size="30"';
     if ( $location_id ) {
         $html .= ' value="' . esc_attr( $location_id ) . '"';
-    }
-    $html .= '/>';
-
-    echo $html;
-}
-
-function singlePlatformDisplayApiKey() {
-
-    $api_key = get_option( 'sp-api-key' );
-
-    $html = '<input type="text" id="sp-api-key" name="sp-api-key" size="50"';
-    if ( $api_key ) {
-        $html .= ' value="' . esc_attr( $api_key ) . '"';
     }
     $html .= '/>';
 
@@ -599,30 +547,6 @@ function singleplatformOptionDisplayDisclaimer() {
 
     $html = '<input type="checkbox" id="sp-display-disclaimer" name="sp-display-disclaimer"';
     if ( $display_disclaimer ) {
-        $html .= ' checked';
-    }
-    $html .= ' />';
-
-    echo $html;
-}
-
-function singleplatformOptionFeedbackWidget() {
-    $display_feedback_widget = get_option('sp-feedback-widget', true);
-
-    $html = '<input type="checkbox" id="sp-feedback-widget" name="sp-feedback-widget"';
-    if ( $display_feedback_widget ) {
-        $html .= ' checked';
-    }
-    $html .= ' />';
-
-    echo $html;
-}
-
-function singleplatformOptionClaimLocation() {
-    $display_claim_location = get_option('sp-claim-location', true);
-
-    $html = '<input type="checkbox" id="sp-claim-location" name="sp-claim-location"';
-    if ( $display_claim_location ) {
         $html .= ' checked';
     }
     $html .= ' />';

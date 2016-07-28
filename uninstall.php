@@ -5,7 +5,6 @@ if ( function_exists( 'delete_option' ) ) {
     // Delete all admin options used for plugin
     $sp_options = array(
         'sp-location-id',
-        'sp-api-key',
         'sp-primary-background-color',
         'sp-secondary-background-color',
         'sp-tertiary-background-color',
@@ -20,8 +19,6 @@ if ( function_exists( 'delete_option' ) ) {
         'sp-display-currency-symbol',
         'sp-display-price',
         'sp-display-disclaimer',
-        'sp-feedback-widget',
-        'sp-claim-location',
         'sp-attribution-image'
     );
     array_walk( $sp_options, 'delete_option' );

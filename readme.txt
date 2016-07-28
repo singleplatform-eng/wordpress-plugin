@@ -8,8 +8,8 @@ With the SinglePlatform plugin, you will be able to update your menus and servic
 SinglePlatform helps local business get discovered everywhere that matters online. With our official WordPress plugin, you can connect your website to our portal so that all of your updates automatically appear on your websites as well as across our expansive network of publishers. This plugin will create a dedicated menu page for your website. Save time with SinglePlatform today.
 
 == Installation ==
-1. Click \"Install Now\".
-2. On the installed plugins page next to the SinglePlatform Plugin, click \"Activate\".
+1. Click "Install Now".
+2. On the installed plugins page next to the SinglePlatform Plugin, click "Activate".
 3. A tab called SinglePlatform will be created in your sidebar, click there.
-4. Enter your Location ID. If you don\'t have this ID, contact your account manager. 
+4. Enter your Location ID. If you don't have this ID, contact your account manager.
 5. Your menu will now appear on your website.
