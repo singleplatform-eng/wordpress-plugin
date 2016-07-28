@@ -15,3 +15,8 @@ SinglePlatform helps local business get discovered everywhere that matters onlin
 3. A tab called SinglePlatform will be created in your sidebar, click there.
 4. Enter your Location ID. If you don't have this ID, contact your account manager.
 5. Your menu will now appear on your website.
+
+== Screenshots ==
+
+1. Settings screen. Customize Tweet and Timeline color schemes including background, text colors, and borders. Attribute site content to a Twitter account. Automatically include Tweet buttons alongside your post content.
+2. Menu Widget. Example of how your SinglePlatform menu can look on your website.
