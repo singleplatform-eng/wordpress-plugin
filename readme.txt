@@ -11,5 +11,5 @@ SinglePlatform helps local business get discovered everywhere that matters onlin
 1. Click "Install Now".
 2. On the installed plugins page next to the SinglePlatform Plugin, click "Activate".
 3. A tab called SinglePlatform will be created in your sidebar, click there.
-4. Enter your Location ID. If you don\'t have this ID, contact your account manager.
+4. Enter your Location ID. If you don't have this ID, contact your account manager.
 5. Your menu will now appear on your website.
