@@ -51,6 +51,7 @@ function singleplatformGetDisplayOption($id) {
 
 function singlePlatformShortcode() {
 
+    $api_key = 'k7z110ui3acwbf3x6pel3tdb0';
     $location_id = get_option( 'sp-location-id' );
     if (!$location_id) {
         return;
@@ -64,7 +65,7 @@ function singlePlatformShortcode() {
     $hide_attribution_image = singleplatformGetDisplayOption('sp-attribution-image');
 
     $html = '<div id="menusContainer"></div>';
-    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/"></script>';
+    $html .= '<script type="text/javascript" src="https://menus.singleplatform.co/businesses/storefront/?apiKey=' . $api_key . '"></script>';
 
     $html .= "<script>
                 var options = {};
