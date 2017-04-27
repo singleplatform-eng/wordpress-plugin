@@ -16,7 +16,7 @@ SinglePlatform helps local business get discovered everywhere that matters onlin
 4. Enter your Location ID. If you don't have this ID, contact your account manager.
 5. Click on the Pages link in your sidebar. The SinglePlatform menu page will be listed as "Menu".
 6. Hover over the the "Menu" item and click "View" to see the published menu page.
-7. Alternatively, hover over the "Menu" item and click "Edit" to change the URL of the menu, or amend it with additional contents.
+7. Alternatively, hover over the "Menu" item and click "Edit" to change the URL of the menu, or amend it with additional content.
 
 == Screenshots ==
 
